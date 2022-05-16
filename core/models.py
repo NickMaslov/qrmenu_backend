@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User  # default user from django
+from django.contrib.auth.models import User
+from django.db.models.base import Model  # default user from django
 
 # Create your models here.
 
@@ -12,3 +13,26 @@ class Place(models.Model):
 
     def __str__(self):
         return '{}/{}'.format(self.owner.username, self.name)
+
+
+class Category(models.Model):
+    place = models.ForeignKey(
+        Place, on_delete=models.CASCADE, related_name="categories")
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "{}/{}".format(self.place, self.name)
+
+
+class MenuItem(models.Model):
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name="menu_items")
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    price = models.IntegerField(default=0)
+    image = models.CharField(max_length=255)
+    is_available = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return "{}/{}".format(self.category, self.name)
