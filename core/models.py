@@ -12,6 +12,8 @@ class Place(models.Model):
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     number_of_tables = models.IntegerField(default=1)
+    font = models.CharField(max_length=100, blank=True)
+    color = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return '{}/{}'.format(self.owner.username, self.name)
