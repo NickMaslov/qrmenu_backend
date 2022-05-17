@@ -133,3 +133,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+STRIPE_API_SECRET_KEY = "sk_test_51L0JatC3pkDU7Lg0DBZgtiU0N8fXSJ0in5DrSp3ftpjKPC9bjgK0Zg3tyEcWVtSdXVDQckxHhQ7HbQY3E8O2v4jN00BmURd177"
